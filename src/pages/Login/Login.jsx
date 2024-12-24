@@ -2,7 +2,8 @@ import Cookies from 'js-cookie';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './login.css';
-import api from '../utils/api';
+import api from '../../utils/api';
+import Swal from 'sweetalert2';
 
 
 export default function Login (){
@@ -34,13 +35,27 @@ export default function Login (){
             
             
         } catch (error) {
-            console.log('Erro ao logar', error);
+            Swal.fire({
+                title: 'Erro ao logar',
+                text: 'Email e/ou senha incorretos! Tente novamente.',
+                icon: 'error',
+                customClass: {
+                    title: 'swal-title',
+                    container: 'swal-title'
+                }
+            })
+
         }
+    }
 
-        navigate('/home');
+    async function handleToRegister(e){
+        e.preventDefault();
 
-
-
+        try {
+            navigate('/register');
+        } catch (error) {
+            alert("Erro:" + error);
+        }
     }
     
     return(   
@@ -60,13 +75,12 @@ export default function Login (){
                             </div>
 
                             <div className='login-buttons'>
-                                <button type="submit">Register</button>
+                                <button onClick={handleToRegister}>Register</button>
                                 <button onClick={handleLogin}>Login</button>
                             </div>
 
                         </form>
                     </div>
-                    
 
                     <div className='login-logo'>
                         <img src="/src/assets/login-img.png"/>

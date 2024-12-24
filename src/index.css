@@ -3,3 +3,8 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+
+.swal-title {
+    font-family: 'Poppins', sans-serif;
+}

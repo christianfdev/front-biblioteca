@@ -114,3 +114,8 @@
 .login-logo img {
   width: 70%;
 }
+
+
+.swal-title {
+  font-family: 'Poppins', sans-serif;
+}
