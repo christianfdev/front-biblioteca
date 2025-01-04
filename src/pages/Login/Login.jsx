@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 
 export default function Login (){
 
-
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -21,7 +20,7 @@ export default function Login (){
         try {
             const response = await api.post('/login', {
                 email: email,
-                senha: password 
+                password: password 
             })
 
             const token = response.data.token;
@@ -31,7 +30,7 @@ export default function Login (){
                 sameSite: 'Strict',
             });
 
-            navigate('/home');
+            navigate('/books');
             
             
         } catch (error) {
@@ -62,7 +61,6 @@ export default function Login (){
         <div className='login'>
            
             <div className="login-container">
-            
 
                 <h1 className='login-title'>Biblioteca Virtual v1.0</h1>
                 <div className='login-content'>

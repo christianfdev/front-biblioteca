@@ -18,9 +18,9 @@ export default function Register (){
 
         try {
             const response = await api.post('/accounts', {
-                nome: name,
-                email: email,
-                senha: password,
+                name,
+                email,
+                password
             })
 
             Swal.fire({

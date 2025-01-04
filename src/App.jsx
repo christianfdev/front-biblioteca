@@ -3,6 +3,7 @@ import Login from './pages/Login/Login'
 import { HashRouter, Route, Routes } from 'react-router'
 import Home from './pages/Home'
 import Register from './pages/Register/Register'
+import Books from './pages/Books/Books'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Login />}/>
         <Route path="/home" element={<Home />}/>
         <Route path="/register" element={<Register />}/>
+        <Route path="/books" element={<Books />}/>
       </Routes>
     </HashRouter>
   )

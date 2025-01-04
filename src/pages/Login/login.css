@@ -4,7 +4,7 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  background-color: #e9ecef;
+  background-color: #4361ee;
 }
 
 .login-container {
@@ -34,7 +34,6 @@
   gap: 1rem;
 }
 
-
 .login-form form{
   display: flex;
   flex-direction: column;
@@ -45,10 +44,12 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   color: #4361ee;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .login-form h1 {
-  color: #5c79f7; 
+  color: #5c79f7;
+  font-size: clamp(1.2rem, 3vw, 2rem); 
 }
 
 .login-form a {
@@ -118,4 +119,73 @@
 
 .swal-title {
   font-family: 'Poppins', sans-serif;
+}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+  .login-container {
+    width: 90vw;
+    height: auto;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .login-form {
+    padding-bottom: 1rem;
+  }
+  
+  .login-content {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .login-logo img {
+    display: none;
+  }
+
+  .login-inputs input {
+    width: 100%;
+    padding: 0.8rem;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .login-form h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-content {
+    flex-direction: column;
+  }
+
+  .login-buttons {
+    gap: 0.5rem;
+  }
+
+  .login-logo img {
+    width: 40%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .login-container {
+    width: 70vw;
+  }
+
+  .login-content {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .login-logo img {
+    display: none;
+  }
 }
