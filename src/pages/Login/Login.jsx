@@ -30,7 +30,7 @@ export default function Login (){
                 sameSite: 'Strict',
             });
 
-            navigate('/books');
+            navigate('/home');
             
             
         } catch (error) {

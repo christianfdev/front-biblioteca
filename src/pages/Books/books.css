@@ -1,14 +1,12 @@
-
-
 .books-container {
     display: flex;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
     gap: 3rem;
-    padding: 4rem;
+    padding: 0 1rem 2rem 1rem;
     font-family: 'Poppins', sans-serif;
-    background-color: #4361ee;
+    background-color: #4900ff;
     
 }
 
@@ -48,7 +46,7 @@
 }
 
 .book-item {
-    background-color: #4361ee;
+    background-color: #4900ff;
     padding: 0.5rem 1rem;
     border-radius: 10px;
     color: #fff;

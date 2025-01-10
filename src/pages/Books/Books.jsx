@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import './books.css';
 import  api  from "../../utils/api";
 import Cookies from 'js-cookie';
+import Navbar from "../../components/Navbar/Navbar";
 
 
 
@@ -40,7 +41,8 @@ export default function Books (){
         
         
         <div className="books-container">
-            <h1 className="books-title">Catálogo de Livros</h1>
+
+            <Navbar>Catálogo de Livros</Navbar>
 
             <input type="text" name="" id="" placeholder="Buscar Livros" className="books-search" onChange={(e) => setSearch(e.target.value)}/>
 
