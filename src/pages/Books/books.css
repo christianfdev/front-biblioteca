@@ -47,8 +47,14 @@
 
 .book-item {
     background-color: #4900ff;
+    position: relative;
     padding: 0.5rem 1rem;
     border-radius: 10px;
+    display: flex;
+}
+
+.div-item {
+    padding: 0.5rem 1rem;
     color: #fff;
     font-weight: 300;
 }
@@ -62,3 +68,22 @@
     text-align: justify;
 }
 
+.book-img {
+    width: 5rem;
+}
+
+.liked-icon {
+    color: #fff;
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+    cursor: pointer;
+}
+
+.active {
+    color: red;
+}
+
+.inactive {
+    color: #fff;
+}

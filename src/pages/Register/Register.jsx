@@ -17,6 +17,8 @@ export default function Register (){
         e.preventDefault();
 
         try {
+
+           
             const response = await api.post('/accounts', {
                 name,
                 email,
@@ -52,7 +54,7 @@ export default function Register (){
     return (
         <div className="register-container">
             <div className='register-content'>
-                <h1>Registre-se para começar</h1>
+                <h1>Registre-se <br/>para começar</h1>
                 <form action="" className='register-form'>
                     <label htmlFor="">Nome:</label>
                     <input type="text" className='register-input' name="" id="" placeholder="Digite seu nome" onChange={e => setName(e.target.value)}/>

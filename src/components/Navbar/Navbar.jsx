@@ -1,11 +1,21 @@
 import './navbar.css'
 import { HiArrowSmLeft } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
 
-export default function Navbar ({ children }){
+export default function Navbar ({ children, back }){
+
+    
+    const navigate = useNavigate();
+
+
+
     return(
         <nav className='navbar'>  
             <div className='navbar-item'>
-                <HiArrowSmLeft className='back-icon'/>
+                
+                { 
+                    back ? <HiArrowSmLeft className='back-icon' onClick={() => navigate(-1)}/> : false
+                }  
 
             </div>
 
@@ -25,6 +35,5 @@ export default function Navbar ({ children }){
         
         </nav>
     )
-
 
 }
