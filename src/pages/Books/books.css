@@ -87,3 +87,18 @@
 .liked-icon.inactive {
     color: #fff;
 }
+
+.plus-icon {
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    z-index: 1000;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    color: #fff;
+}
+
+.plus-icon:hover{
+    color: #000;
+}

@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    height: 8vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4900ff;
+    font-family: "Poppins", sans-serif;
+}
+
+.navbar-item {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.back-icon {
+    width: 2rem;
+    height: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.back-icon:hover {
+    color: #000;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar ul li {
+    list-style: none;
+    font-weight: bold;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+}

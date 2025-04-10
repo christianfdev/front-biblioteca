@@ -4,12 +4,16 @@ import api from "../../utils/api";
 import Cookies from 'js-cookie';
 import Navbar from "../../components/Navbar/Navbar";
 import { FaHeart } from "react-icons/fa";
+import { FaCirclePlus } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export default function Books() {
 
     const [books, setBooks] = useState([]);
     const [search, setSearch] = useState('');
-    const [favorites, setFavorites] = useState([]); // Usando Array em vez de Set
+    const [favorites, setFavorites] = useState([]);
+
+    const nav = useNavigate();
 
     async function listBooks() {
         try {
@@ -33,7 +37,7 @@ export default function Books() {
             console.log(favoritesResponse.data.favorites);
 
             if (favoritesResponse) {
-                setFavorites(favoritesResponse.data.favorites); // Atualizando com um array diretamente
+                setFavorites(favoritesResponse.data.favorites);
             }
 
         } catch (error) {
@@ -74,7 +78,7 @@ export default function Books() {
     return (
         <div className="books-container">
 
-            <Navbar back>Catálogo de Livros</Navbar>
+            <Navbar back>Cadastro de Livro</Navbar>
 
             <input
                 type="text"
@@ -104,6 +108,8 @@ export default function Books() {
                 )) : (<p>Sem Livros para Listar</p>)}
 
             </ul>
+            <FaCirclePlus className="plus-icon" onClick={() => nav('/register-book')}/>
+            
         </div>
     )
 }
