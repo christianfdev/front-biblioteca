@@ -73,8 +73,8 @@ export default function Login (){
                             </div>
 
                             <div className='login-buttons'>
-                                <button onClick={handleToRegister}>Register</button>
-                                <button onClick={handleLogin}>Login</button>
+                                <button type='button' onClick={handleToRegister}>Register</button>
+                                <button type='submit' onClick={handleLogin}>Login</button>
                             </div>
 
                         </form>

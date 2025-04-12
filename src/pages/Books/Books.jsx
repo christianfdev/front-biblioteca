@@ -93,7 +93,7 @@ export default function Books() {
 
                 {books && books.length > 0 ? books.map((book) => (
                     <li key={book.id} className="book-item">
-                        <img src="/src/assets/livro1.jpg" alt="capa do livro" className="book-img" />
+                        <img src={book.cover_image} alt="capa do livro" className="book-img" />
                         <div className="div-item">
                             <p className="book-name">{book.title}</p>
                             <p><label>Autor:</label> {book.author}</p>

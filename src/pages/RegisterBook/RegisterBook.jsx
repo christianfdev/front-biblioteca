@@ -4,6 +4,7 @@ import api from '../../utils/api';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import Navbar from "../../components/Navbar/Navbar";
+import Cookies from 'js-cookie';
 
 
 export default function RegisterBook (){
@@ -13,21 +14,41 @@ export default function RegisterBook (){
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
     const [publishedOn, setPublishedOn] = useState('');
+    const [imgFile, setImgFile] = useState('');
+
 
     let navigate = useNavigate();
 
     async function handleRegister(e){
         e.preventDefault();
 
+        let finalCoverImg;
+        
+        if(imgFile){
+            try {
+                finalCoverImg = await handleUpload(imgFile);
+            } catch (error) {
+                console.error("Erro ao enviar imagem!");
+            }
+        }
+
+
         try {
 
-            const response = await api.post('/accounts', {
+            const response = await api.post('/books', {
                 title,
                 author,
                 category,
                 description,
-                published_on: publishedOn
+                published_on: publishedOn,
+                cover_image: finalCoverImg
+,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`
+                }
             })
+
 
             Swal.fire({
                 title: 'Registro efetuado com sucesso!',
@@ -38,7 +59,7 @@ export default function RegisterBook (){
                 }
             })
 
-            navigate('/');
+            navigate('/home');
 
         } catch (error) {
             Swal.fire({
@@ -52,7 +73,24 @@ export default function RegisterBook (){
             })
         }
     }
-    
+
+    async function handleUpload(file){
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'front-biblioteca');
+
+        const response = await fetch('https://api.cloudinary.com/v1_1/dn5skaovf/image/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        
+        return data.secure_url;
+        
+    }
+
 
     return (
         <>
@@ -73,7 +111,7 @@ export default function RegisterBook (){
                     <label htmlFor="">Data de Publicação:</label>
                     <input type="date" className='register-input' onChange={e => setPublishedOn(e.target.value)}/>
                     <label htmlFor="">Capa do Livro:</label>
-                    <input type="file" className='file' accept="image/*" onChange={e => setCoverImage(e.target.files[0])}/>
+                    <input type="file" className='file' accept="image/*" onChange={e => setImgFile(e.target.files[0])}/>
                     <button className='register-button' onClick={handleRegister}>Registrar</button>
                 </form>
             </div>
