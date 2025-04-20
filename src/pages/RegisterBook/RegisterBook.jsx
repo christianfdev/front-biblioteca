@@ -80,15 +80,20 @@ export default function RegisterBook (){
         formData.append('file', file);
         formData.append('upload_preset', 'front-biblioteca');
 
-        const response = await fetch('https://api.cloudinary.com/v1_1/dn5skaovf/image/upload', {
+        const response = await fetch('https://api.cloudinary.com/v1_1/dn5skaovf/image/upload/', {
             method: 'POST',
             body: formData
         });
 
         const data = await response.json();
         
-        return data.secure_url;
-        
+        return resizeImg(data.secure_url);
+
+    }
+
+    function resizeImg(url, largura = 300, altura = 400) {
+        const editedURL = url.replace('/upload/', `/upload/w_${largura},h_${altura},c_fill/`);
+        return editedURL;
     }
 
 

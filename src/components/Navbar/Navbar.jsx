@@ -2,11 +2,16 @@ import './navbar.css'
 import { HiArrowSmLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 
-export default function Navbar ({ children, back }){
+export default function Navbar ({ children, back, no }){
 
     
     const navigate = useNavigate();
 
+    let noItems = '';
+
+    if (no){
+        noItems = 'no-items';
+    }
 
 
     return(
@@ -24,7 +29,7 @@ export default function Navbar ({ children, back }){
 
             </div>
 
-            <div className='navbar-item'>
+            <div className={`navbar-item ${noItems}`}>
                 <ul className='nav-options'>
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/books">Livros</a></li>

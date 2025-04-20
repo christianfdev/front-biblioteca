@@ -42,3 +42,7 @@
     text-decoration: none;
     color: #fff;
 }
+
+.no-items {
+    display: none;
+}

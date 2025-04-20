@@ -3,6 +3,8 @@ import './register.css'
 import api from '../../utils/api';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import Navbar from "../../components/Navbar/Navbar";
+
 
 
 export default function Register (){
@@ -53,6 +55,7 @@ export default function Register (){
     
     return (
         <div className="register-container">
+            <Navbar back no></Navbar>
             <div className='register-content'>
                 <h1>Registre-se <br/>para começar</h1>
                 <form action="" className='register-form'>

@@ -1,10 +1,63 @@
 import './home.css';
 import Navbar from '../../components/Navbar/Navbar';
 import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
-
-import { HiArrowSmLeft } from 'react-icons/hi';
+import api from '../../utils/api';
+import Cookies from 'js-cookie';
+import { useState, useEffect } from 'react';
 
 export default function Home (){
+
+    const [mostFavorites, setMostFavorites] = useState([]);
+    const [myFavorites, setMyFavorites] = useState([]);
+
+
+
+
+
+
+    async function getMostFavorites(){
+        
+        try {
+            const response = await api.get('/favorite/most', {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`
+                }
+            });
+
+            if(response && response.status === 200){
+                setMostFavorites(response.data.favorites);
+
+            }
+        } catch (error) {
+            alert("Não foi possível listar os favoritos da comunidade: ", error);
+        }
+    }
+
+    async function getMyFavorites(){
+        
+        try {
+            const response = await api.get('/favorite', {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`
+                }
+            });
+
+            if(response && response.status === 200){
+                setMyFavorites(response.data.favorites);
+
+            }
+        } catch (error) {
+            alert("Não foi possível listar os seus favoritos: ", error);
+        }
+    }
+
+    useEffect(() => {
+        getMostFavorites();
+        getMyFavorites();
+    }, [])
+
+
+
     return(
         
         <div className='home-container'>
@@ -13,36 +66,27 @@ export default function Home (){
             <div className='home-content'>
                 
                 <div className='home-spaces top-books'>
-                    <h2>Livros Preferidos da Comunidade</h2>
-                    <button className='top-item'>
-                       #1 - A volta dos que Não Foram
-                    </button>
+                    <h2>Livros Preferidos da <br />Comunidade</h2>
 
-                    <button className='top-item'>
-                        #2 - As Tranças da Vovó Careca
-                    </button>
-
-                    <button className='top-item'>
-                        #3 - Poeira em Alto Mar
-                    </button>
-
+                    {mostFavorites.map((most, index) => (
+                            <button key={most.id} className='top-item'>
+                                #{index +1} - {most.title}
+                            </button>
+                        ))
+                    }
                 </div>
 
 
 
                 <div className='home-spaces top-books'>
                     <h2>Meus Livros <br/>Favoritos</h2>
-                    <button className='top-item'>
-                       #1 - A volta dos que Não Foram
-                    </button>
 
-                    <button className='top-item'>
-                        #2 - As Tranças da Vovó Careca
-                    </button>
-
-                    <button className='top-item'>
-                        #3 - Poeira em Alto Mar
-                    </button>
+                    {myFavorites.map((favorite, index) => (
+                                <button key={favorite.id} className='top-item'>
+                                    #{index +1} - {favorite.title}
+                                </button>
+                            ))
+                    }
 
                 </div>
 
