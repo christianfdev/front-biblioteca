@@ -4,13 +4,14 @@ import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
 import api from '../../utils/api';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home (){
 
     const [mostFavorites, setMostFavorites] = useState([]);
     const [myFavorites, setMyFavorites] = useState([]);
 
-
+    const navigate = useNavigate();
 
 
 
@@ -69,7 +70,7 @@ export default function Home (){
                     <h2>Livros Preferidos da <br />Comunidade</h2>
 
                     {mostFavorites.map((most, index) => (
-                            <button key={most.id} className='top-item'>
+                            <button key={most.id} className='top-item' onClick={() => navigate(`/book-info/${most.id}`)}>
                                 #{index +1} - {most.title}
                             </button>
                         ))
@@ -82,7 +83,7 @@ export default function Home (){
                     <h2>Meus Livros <br/>Favoritos</h2>
 
                     {myFavorites.map((favorite, index) => (
-                                <button key={favorite.id} className='top-item'>
+                                <button key={favorite.id} className='top-item' onClick={() => navigate(`/book-info/${favorite.id}`)}>
                                     #{index +1} - {favorite.title}
                                 </button>
                             ))

@@ -79,7 +79,7 @@ export default function Books() {
     return (
         <div className="books-container">
 
-            <Navbar back>Cadastro de Livro</Navbar>
+            <Navbar back>Livros</Navbar>
 
             <input
                 type="text"
@@ -98,13 +98,21 @@ export default function Books() {
                         <div className="div-item">
                             <p className="book-name">{book.title}</p>
                             <p><label>Autor:</label> {book.author}</p>
-                            <p className="book-description"><label>Descrição:</label> {book.description ?? "Sem descrição"}</p>
                             <p><label>Categoria:</label> {book.category}</p>
+                            <p className="book-description"><label>Descrição:</label> {book.description ?? "Sem descrição"}</p>
+
+                            <div className="div-about">
+                                <button className="btn-about" onClick={() => nav(`/book-info/${book.id}`)}>
+                                    Sobre
+                                </button>
+                            </div>
+                            
                         </div>
                         <FaHeart
                             className={favorites.some(favorite => favorite.id === book.id) ? "liked-icon active" : "liked-icon inactive"} 
                             onClick={() => toggleFavorite(book.id)}
                         />
+                        
                     </li>
                 )) : (<p>Sem Livros para Listar</p>)}
 

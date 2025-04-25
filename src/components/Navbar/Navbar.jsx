@@ -33,6 +33,7 @@ export default function Navbar ({ children, back, no }){
                 <ul className='nav-options'>
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/books">Livros</a></li>
+                    <li><a href="#/favorites">Favoritos</a></li>
                     <li><a href="">Sair</a></li>
                 </ul>
 

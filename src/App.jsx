@@ -5,6 +5,8 @@ import Home from './pages/Home/Home'
 import Register from './pages/Register/Register'
 import Books from './pages/Books/Books'
 import RegisterBook from './pages/RegisterBook/RegisterBook';
+import BookInfo from './pages/BookInfo/BookInfo'
+import Favorites from './pages/Favorites/Favorites'
 
 function App() {
 
@@ -15,7 +17,9 @@ function App() {
         <Route path="/home" element={<Home />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/books" element={<Books />}/>
+        <Route path="/favorites" element={<Favorites />}/>
         <Route path="/register-book" element={<RegisterBook />}/>
+        <Route path="/book-info/:id" element={<BookInfo/>}/>
       </Routes>
     </HashRouter>
   )
