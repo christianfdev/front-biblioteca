@@ -57,7 +57,10 @@
     color: #fff;
     font-weight: 300;
     width: 90%;
-    
+}
+
+.div-item label {
+    font-weight: 700;
 }
 
 .book-name { 
@@ -78,22 +81,21 @@
     max-height: 8rem;
 }
 
-.liked-icon {
+.remove-icon {
     position: absolute;
     right: 1rem;
     top: 0.8rem;
     cursor: pointer;
     transition: color 0.3s ease;
-}
-
-.liked-icon.active {
-    color: red;
-}
-
-.liked-icon.inactive {
     color: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
+.custom-title {
+    font-family: "Poppins", sans-serif;
+
+}
 .div-about {
     display: flex;
     justify-content: end;

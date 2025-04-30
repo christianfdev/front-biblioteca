@@ -10,8 +10,7 @@ import { useParams } from "react-router-dom";
 export default function BookInfo() {
 
     const [book, setBook] = useState([]);
-
-    const nav = useNavigate();
+    
     const { id } = useParams();
 
 

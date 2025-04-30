@@ -13,9 +13,6 @@ export default function Home (){
 
     const navigate = useNavigate();
 
-
-
-
     async function getMostFavorites(){
         
         try {
@@ -27,7 +24,6 @@ export default function Home (){
 
             if(response && response.status === 200){
                 setMostFavorites(response.data.favorites);
-
             }
         } catch (error) {
             alert("Não foi possível listar os favoritos da comunidade: ", error);
@@ -45,7 +41,6 @@ export default function Home (){
 
             if(response && response.status === 200){
                 setMyFavorites(response.data.favorites);
-
             }
         } catch (error) {
             alert("Não foi possível listar os seus favoritos: ", error);
@@ -56,8 +51,6 @@ export default function Home (){
         getMostFavorites();
         getMyFavorites();
     }, [])
-
-
 
     return(
         
@@ -77,8 +70,6 @@ export default function Home (){
                     }
                 </div>
 
-
-
                 <div className='home-spaces top-books'>
                     <h2>Meus Livros <br/>Favoritos</h2>
 
@@ -88,10 +79,7 @@ export default function Home (){
                                 </button>
                             ))
                     }
-
                 </div>
-
-
 
                 <div className='home-spaces social-media'>
 

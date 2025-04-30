@@ -13,6 +13,7 @@ export default function Books() {
     const [books, setBooks] = useState([]);
     const [search, setSearch] = useState('');
     const [favorites, setFavorites] = useState([]);
+    const [isSuperAdmin, setIsSuperAdmin] = useState(false);
 
     const nav = useNavigate();
 
@@ -28,26 +29,47 @@ export default function Books() {
             if (response && response.status === 200) {
                 setBooks(response.data.books);
             }
-
-            const favoritesResponse = await api.get('favorite', {
-                headers: {
-                    Authorization: `Bearer ${Cookies.get('token')}`
-                }
-            });
-
-            console.log(favoritesResponse.data.favorites);
-
-            if (favoritesResponse) {
-                setFavorites(favoritesResponse.data.favorites);
-            }
-
         } catch (error) {
             alert("Não foi possível listar os livros: ", error);
         }
     }
 
+    async function getFavorites(){
+        try {
+            const favoritesResponse = await api.get('favorite', {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`
+                }
+            });
+    
+            if (favoritesResponse) {
+                setFavorites(favoritesResponse.data.favorites);
+            }
+        } catch (error) {
+            alert("Erro:", error);
+        }
+    }
+
+    async function getMyInfo(){
+        try {
+            const myInfo = await api.get('/me', {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`
+                }
+            });
+            
+            if (myInfo.data.role === 'superadmin') {
+                setIsSuperAdmin(true);
+            }
+        } catch (error) {
+            alert("Erro:", error);
+        }
+    }
+
     useEffect(() => {
         listBooks();
+        getFavorites();
+        getMyInfo();
     }, [search]);
 
     const toggleFavorite = (bookId) => {
@@ -83,8 +105,6 @@ export default function Books() {
 
             <input
                 type="text"
-                name=""
-                id=""
                 placeholder="Buscar Livros"
                 className="books-search"
                 onChange={(e) => setSearch(e.target.value)}
@@ -117,7 +137,9 @@ export default function Books() {
                 )) : (<p>Sem Livros para Listar</p>)}
 
             </ul>
-            <FaCirclePlus className="plus-icon" onClick={() => nav('/register-book')}/>
+
+                {isSuperAdmin ? (<FaCirclePlus className="plus-icon" onClick={() => nav('/register-book')}/>) : null}
+            
             
         </div>
     )

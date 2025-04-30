@@ -3,9 +3,9 @@ import './favorites.css';
 import api from "../../utils/api";
 import Cookies from 'js-cookie';
 import Navbar from "../../components/Navbar/Navbar";
-import { IoCloseSharp } from "react-icons/io5";
+import { FaRegWindowClose } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import Swal from 'sweetalert2';
 
 export default function Favorites() {
 
@@ -38,20 +38,38 @@ export default function Favorites() {
 
     async function removeFavorite (favoriteId) {
         
-        if (!confirm("Deseja remover esse livro dos favoritos?")) return;
+        Swal.fire({
+            title: "Você deseja realmente remover este livro dos seus favoritos?",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            customClass: {
+                title: "custom-title"
+            }
+          }).then((result) => {
+            
+            if (result.isConfirmed) {
 
-        try {
-            api.delete(`favorite/${favoriteId}`, {
-                headers: {
-                    Authorization: `Bearer ${Cookies.get('token')}`
+                try {
+                    api.delete(`favorite/${favoriteId}`, {
+                        headers: {
+                            Authorization: `Bearer ${Cookies.get('token')}`
+                        }
+                    }).then(() => {
+                        const updatedFavorites = favorites.filter((favorite) => favorite.id !== favoriteId);
+                        setFavorites(updatedFavorites);
+                        Swal.fire({
+                            title: "Removido com Sucesso!",
+                            icon: "success",
+                            customClass: {
+                                title: "custom-title",
+                            }
+                        });
+                    })
+                } catch (error) {
+                    Swal.fire("Não foi possível remover o livro!", "", "error");
                 }
-            }).then(() => {
-                const updatedFavorites = favorites.filter((favorite) => favorite.id !== favoriteId);
-                setFavorites(updatedFavorites);
-            })
-        } catch (error) {
-            alert("Não foi possível remover o livro: ", error);
-        }
+            }
+          }); 
     }
 
     return (
@@ -61,8 +79,6 @@ export default function Favorites() {
 
             <input
                 type="text"
-                name=""
-                id=""
                 placeholder="Buscar Favoritos"
                 className="books-search"
                 onChange={(e) => setSearch(e.target.value)}
@@ -87,7 +103,7 @@ export default function Favorites() {
                             
                         </div>
 
-                        <IoCloseSharp className="liked-icon" onClick={() => removeFavorite(favorite.id)} />
+                        <FaRegWindowClose className="remove-icon" onClick={() => removeFavorite(favorite.id)} />
                         
                     </li>
                 )) : (<p>Você não possui livros favoritos.</p>)}

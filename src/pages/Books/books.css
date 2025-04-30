@@ -57,7 +57,10 @@
     color: #fff;
     font-weight: 300;
     width: 90%;
-    
+}
+
+.div-item label {
+    font-weight: 700;
 }
 
 .book-name { 

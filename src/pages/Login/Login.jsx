@@ -62,7 +62,7 @@ export default function Login (){
            
             <div className="login-container">
 
-                <h1 className='login-title'>Biblioteca Virtual v1.0</h1>
+                <h1 className='login-title'>My Books v1.0</h1>
                 <div className='login-content'>
                     <div className='login-form'>
                         <h1 className='login-title'>Faça seu login</h1>
