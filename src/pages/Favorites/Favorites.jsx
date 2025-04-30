@@ -3,9 +3,11 @@ import './favorites.css';
 import api from "../../utils/api";
 import Cookies from 'js-cookie';
 import Navbar from "../../components/Navbar/Navbar";
-import { FaRegWindowClose } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import LiBook from "../../components/LiBook/LiBook";
+
 
 export default function Favorites() {
 
@@ -87,25 +89,7 @@ export default function Favorites() {
             <ul className="books-list">
 
                 {favorites && favorites.length > 0 ? favorites.map((favorite) => (
-                    <li key={favorite.id} className="book-item">
-                        <img src={favorite.cover_image} alt="capa do livro" className="book-img" />
-                        <div className="div-item">
-                            <p className="book-name">{favorite.title}</p>
-                            <p><label>Autor:</label> {favorite.author}</p>
-                            <p><label>Categoria:</label> {favorite.category}</p>
-                            <p className="book-description"><label>Descrição:</label> {favorite.description ?? "Sem descrição"}</p>
-
-                            <div className="div-about">
-                                <button className="btn-about" onClick={() => nav(`/book-info/${favorite.id}`)}>
-                                    Sobre
-                                </button>
-                            </div>
-                            
-                        </div>
-
-                        <FaRegWindowClose className="remove-icon" onClick={() => removeFavorite(favorite.id)} />
-                        
-                    </li>
+                    <LiBook key={favorite.id} book={favorite} toggleFavorite={removeFavorite} fav={true} favId={favorite.id} />
                 )) : (<p>Você não possui livros favoritos.</p>)}
 
             </ul>

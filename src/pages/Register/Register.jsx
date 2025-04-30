@@ -4,6 +4,7 @@ import api from '../../utils/api';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import Navbar from "../../components/Navbar/Navbar";
+import RegisterInput from '../../components/RegisterInput/RegisterInput';
 
 
 
@@ -51,20 +52,15 @@ export default function Register (){
         }
     }
     
-    
-    
     return (
         <div className="register-container">
             <Navbar back no></Navbar>
             <div className='register-content'>
                 <h1>Registre-se <br/>para começar</h1>
                 <form action="" className='register-form'>
-                    <label htmlFor="">Nome:</label>
-                    <input type="text" className='register-input' name="" id="" placeholder="Digite seu nome" onChange={e => setName(e.target.value)}/>
-                    <label htmlFor="">E-mail:</label>
-                    <input type="text" className='register-input' placeholder="Digite seu email" onChange={e => setEmail(e.target.value)}/>
-                    <label htmlFor="">Password:</label>
-                    <input type="password" className='register-input' placeholder="Digite sua senha" onChange={e => setPassword(e.target.value)}/> 
+                    <RegisterInput title="Nome" type="text" placeholder="Digite seu nome" onChange={setName}/>
+                    <RegisterInput title="Email" type="email" placeholder="Digite seu email" onChange={setEmail}/>
+                    <RegisterInput title="Senha" type="password" placeholder="Digite sua senha" onChange={setPassword}/> 
                     <button className='register-button' onClick={handleRegister}>Registrar</button>
                 </form>
             </div>

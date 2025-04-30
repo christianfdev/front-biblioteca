@@ -40,22 +40,6 @@
 
 }
 
-.register-input {
-    height: 46px;
-    width: 25rem;
-    padding: 0 16px;
-    border: 2px solid #000;
-    border-radius: 4px;
-    outline: 0;
-    transition: .2s;
-    line-break: normal;
-    margin-bottom: 2rem;
-}
-
-.register-input::after{
-
-}
-
 .register-button {
     font-family: 'Poppins', sans-serif;
     color: #fff;

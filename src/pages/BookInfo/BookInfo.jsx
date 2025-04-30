@@ -6,13 +6,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-
 export default function BookInfo() {
 
     const [book, setBook] = useState([]);
     
     const { id } = useParams();
-
 
     async function getBook() {
         try {

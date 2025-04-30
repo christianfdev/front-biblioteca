@@ -26,7 +26,6 @@
     line-break: normal;
 }
 
-
 .books-search:focus {
     border-color: #000;
   }
@@ -42,83 +41,6 @@
     gap: 2rem;
     background-color: #fff;
     
-}
-
-.book-item {
-    background-color: #4900ff;
-    position: relative;
-    padding: 1rem 1rem;
-    border-radius: 10px;
-    display: flex;
-}
-
-.div-item {
-    padding: 0.5rem 1rem;
-    color: #fff;
-    font-weight: 300;
-    width: 90%;
-}
-
-.div-item label {
-    font-weight: 700;
-}
-
-.book-name { 
-    color: #fff;
-    font-weight: 700;
-}
-
-.book-description {
-    text-align: justify;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 100%;
-}
-
-.book-img {
-    width: 5rem;
-    max-height: 8rem;
-}
-
-.liked-icon {
-    position: absolute;
-    right: 1rem;
-    top: 0.8rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.liked-icon.active {
-    color: red;
-}
-
-.liked-icon.inactive {
-    color: #fff;
-}
-
-.div-about {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    padding-top: 1rem;
-}
-
-.btn-about {
-    font-family: 'Poppins', sans-serif;
-    color: #4900ff;
-    font-weight: 700;
-    padding: 10px 45px;
-    background-color: #fff ;
-    transition: 0.5s;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-about:hover {
-    color: #4361ee;
-    background-color: #000;
 }
 
 .plus-icon {

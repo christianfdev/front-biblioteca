@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import Navbar from "../../components/Navbar/Navbar";
 import Cookies from 'js-cookie';
+import RegisterInput from '../../components/RegisterInput/RegisterInput';
 
 
 export default function RegisterBook (){
@@ -96,25 +97,18 @@ export default function RegisterBook (){
         return editedURL;
     }
 
-
     return (
         <>
         <Navbar back></Navbar>
         <div className="register-container">
-            
             <div className='register-book-content'>
                 <h1>Cadastrar Livro</h1>
                 <form action="" className='register-form'>
-                    <label htmlFor="">Título:</label>
-                    <input type="text" className='register-input' placeholder="Digite o título do livro" onChange={e => setTitle(e.target.value)}/>
-                    <label htmlFor="">Autor:</label>
-                    <input type="text" className='register-input' placeholder="Digite o nome do autor" onChange={e => setAuthor(e.target.value)}/>
-                    <label htmlFor="">Categoria:</label>
-                    <input type="text" className='register-input' placeholder="Digite a categoria" onChange={e => setCategory(e.target.value)}/> 
-                    <label htmlFor="">Descrição:</label>
-                    <input type="text" className='register-input' placeholder="Digite a descrição" onChange={e => setDescription(e.target.value)}/>
-                    <label htmlFor="">Data de Publicação:</label>
-                    <input type="date" className='register-input' onChange={e => setPublishedOn(e.target.value)}/>
+                    <RegisterInput title="Título" type="text" placeholder="Digite o título do livro" onChange={setTitle}/>
+                    <RegisterInput title="Autor" type="text" placeholder="Digite o nome do autor" onChange={setAuthor}/>
+                    <RegisterInput title="Categoria" type="text" placeholder="Digite a categoria" onChange={setCategory}/>
+                    <RegisterInput title="Descrição" type="text" placeholder="Digite a descrição" onChange={setDescription}/>
+                    <RegisterInput title="Data de Publicação" type="date" placeholder="Digite a data de publicação" onChange={setPublishedOn}/>
                     <label htmlFor="">Capa do Livro:</label>
                     <input type="file" className='file' accept="image/*" onChange={e => setImgFile(e.target.files[0])}/>
                     <button className='register-button' onClick={handleRegister}>Registrar</button>

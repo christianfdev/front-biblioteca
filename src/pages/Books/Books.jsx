@@ -3,9 +3,9 @@ import './books.css';
 import api from "../../utils/api";
 import Cookies from 'js-cookie';
 import Navbar from "../../components/Navbar/Navbar";
-import { FaHeart } from "react-icons/fa";
 import { FaCirclePlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import LiBook from "../../components/LiBook/LiBook";
 
 
 export default function Books() {
@@ -113,33 +113,12 @@ export default function Books() {
             <ul className="books-list">
 
                 {books && books.length > 0 ? books.map((book) => (
-                    <li key={book.id} className="book-item">
-                        <img src={book.cover_image} alt="capa do livro" className="book-img" />
-                        <div className="div-item">
-                            <p className="book-name">{book.title}</p>
-                            <p><label>Autor:</label> {book.author}</p>
-                            <p><label>Categoria:</label> {book.category}</p>
-                            <p className="book-description"><label>Descrição:</label> {book.description ?? "Sem descrição"}</p>
-
-                            <div className="div-about">
-                                <button className="btn-about" onClick={() => nav(`/book-info/${book.id}`)}>
-                                    Sobre
-                                </button>
-                            </div>
-                            
-                        </div>
-                        <FaHeart
-                            className={favorites.some(favorite => favorite.id === book.id) ? "liked-icon active" : "liked-icon inactive"} 
-                            onClick={() => toggleFavorite(book.id)}
-                        />
-                        
-                    </li>
+                    <LiBook key={book.id} book={book} favorites={favorites} toggleFavorite={toggleFavorite}/>
                 )) : (<p>Sem Livros para Listar</p>)}
 
             </ul>
 
                 {isSuperAdmin ? (<FaCirclePlus className="plus-icon" onClick={() => nav('/register-book')}/>) : null}
-            
             
         </div>
     )
