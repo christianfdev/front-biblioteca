@@ -51,14 +51,15 @@
     color: #fff;
 }
 
-.div-about {
+.div-book {
     display: flex;
     justify-content: end;
     align-items: end;
     padding-top: 1rem;
+    gap: 1rem;
 }
 
-.btn-about {
+.btn-book {
     font-family: 'Poppins', sans-serif;
     color: #4900ff;
     font-weight: 700;
@@ -70,7 +71,7 @@
     cursor: pointer;
 }
 
-.btn-about:hover {
+.btn-book:hover {
     color: #4361ee;
     background-color: #000;
 }

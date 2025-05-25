@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { FaCirclePlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import LiBook from "../../components/LiBook/LiBook";
+import Swal from 'sweetalert2';
 
 
 export default function Books() {
@@ -66,6 +67,42 @@ export default function Books() {
         }
     }
 
+    async function handleDeleteBook (bookId) {
+        const result = await Swal.fire({
+            title: "Você deseja realmente remover este livro?",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            customClass: {
+                title: "custom-title"
+            }
+        });
+    
+        if (result.isConfirmed) {
+            try {
+                await api.delete(`books/${bookId}`, {
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('token')}`
+                    }
+                });
+    
+                Swal.fire({
+                    title: "Removido com Sucesso!",
+                    icon: "success",
+                    customClass: {
+                        title: "custom-title",
+                    }
+                });
+    
+                setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId));
+    
+            } catch (error) {
+                console.error(error);
+                Swal.fire("Não foi possível remover o livro!", "", "error");
+            }
+        }
+    };
+
+
     useEffect(() => {
         listBooks();
         getFavorites();
@@ -113,7 +150,7 @@ export default function Books() {
             <ul className="books-list">
 
                 {books && books.length > 0 ? books.map((book) => (
-                    <LiBook key={book.id} book={book} favorites={favorites} toggleFavorite={toggleFavorite}/>
+                    <LiBook key={book.id} book={book} favorites={favorites} toggleFavorite={toggleFavorite} isSuperAdmin={isSuperAdmin} onDelete={handleDeleteBook} />
                 )) : (<p>Sem Livros para Listar</p>)}
 
             </ul>

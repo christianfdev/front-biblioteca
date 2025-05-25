@@ -19,6 +19,7 @@ function App() {
         <Route path="/books" element={<Books />}/>
         <Route path="/favorites" element={<Favorites />}/>
         <Route path="/register-book" element={<RegisterBook />}/>
+        <Route path="/update-book/:id" element={<RegisterBook />}/>
         <Route path="/book-info/:id" element={<BookInfo/>}/>
       </Routes>
     </HashRouter>

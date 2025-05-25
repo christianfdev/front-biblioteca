@@ -1,6 +1,7 @@
 import './navbar.css'
 import { HiArrowSmLeft } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function Navbar ({ children, back, no }){
 
@@ -11,6 +12,24 @@ export default function Navbar ({ children, back, no }){
 
     if (no){
         noItems = 'no-items';
+    }
+
+
+    async function exit(){
+        
+
+        const result = await Swal.fire({
+            title: "Você deseja realmente sair?",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            customClass: {
+                title: "custom-title"
+            }
+        });
+
+       if (result.isConfirmed){
+            navigate('/');
+       } 
     }
 
 
@@ -34,7 +53,7 @@ export default function Navbar ({ children, back, no }){
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/books">Livros</a></li>
                     <li><a href="#/favorites">Favoritos</a></li>
-                    <li><a href="">Sair</a></li>
+                    <li><a style={{cursor: 'pointer'}} onClick={() => exit()}>Sair</a></li>
                 </ul>
 
             </div>

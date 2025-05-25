@@ -73,9 +73,9 @@ export default function Home (){
                 <div className='home-spaces top-books'>
                     <h2>Meus Livros <br/>Favoritos</h2>
 
-                    {myFavorites.map((favorite, index) => (
+                    {myFavorites.map((favorite) => (
                                 <button key={favorite.id} className='top-item' onClick={() => navigate(`/book-info/${favorite.id}`)}>
-                                    #{index +1} - {favorite.title}
+                                   {favorite.title}
                                 </button>
                             ))
                     }

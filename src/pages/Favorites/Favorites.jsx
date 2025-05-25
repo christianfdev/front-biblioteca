@@ -3,11 +3,9 @@ import './favorites.css';
 import api from "../../utils/api";
 import Cookies from 'js-cookie';
 import Navbar from "../../components/Navbar/Navbar";
-
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import LiBook from "../../components/LiBook/LiBook";
-
 
 export default function Favorites() {
 
@@ -40,38 +38,37 @@ export default function Favorites() {
 
     async function removeFavorite (favoriteId) {
         
-        Swal.fire({
+        const result = await Swal.fire({
             title: "Você deseja realmente remover este livro dos seus favoritos?",
             showCancelButton: true,
             confirmButtonText: "Sim",
             customClass: {
                 title: "custom-title"
             }
-          }).then((result) => {
+          });
             
-            if (result.isConfirmed) {
+        if(result.isConfirmed) {
 
-                try {
-                    api.delete(`favorite/${favoriteId}`, {
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('token')}`
+            try {
+                api.delete(`favorite/${favoriteId}`, {
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('token')}`
+                    }
+                }).then(() => {
+                    const updatedFavorites = favorites.filter((favorite) => favorite.id !== favoriteId);
+                    setFavorites(updatedFavorites);
+                    Swal.fire({
+                        title: "Removido com Sucesso!",
+                        icon: "success",
+                        customClass: {
+                            title: "custom-title",
                         }
-                    }).then(() => {
-                        const updatedFavorites = favorites.filter((favorite) => favorite.id !== favoriteId);
-                        setFavorites(updatedFavorites);
-                        Swal.fire({
-                            title: "Removido com Sucesso!",
-                            icon: "success",
-                            customClass: {
-                                title: "custom-title",
-                            }
-                        });
-                    })
-                } catch (error) {
-                    Swal.fire("Não foi possível remover o livro!", "", "error");
-                }
+                    });
+                })
+            } catch (error) {
+                Swal.fire("Não foi possível remover o livro!", "", "error");
             }
-          }); 
+        }
     }
 
     return (

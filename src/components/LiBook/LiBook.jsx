@@ -4,7 +4,7 @@ import { FaRegWindowClose } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 
-export default function LiBook({book, favorites, toggleFavorite, fav=false, favId}) {
+export default function LiBook({book, favorites, toggleFavorite, fav=false, favId, isSuperAdmin=false, onDelete}) {
 
     const nav = useNavigate();
 
@@ -17,10 +17,22 @@ export default function LiBook({book, favorites, toggleFavorite, fav=false, favI
                 <p><label>Categoria:</label> {book.category}</p>
                 <p className="book-description"><label>Descrição:</label> {book.description ?? "Sem descrição"}</p>
 
-                <div className="div-about">
-                    <button className="btn-about" onClick={() => nav(`/book-info/${book.id}`)}>
+                <div className="div-book">
+                    <button className="btn-book" onClick={() => nav(`/book-info/${book.id}`)}>
                         Sobre
                     </button>
+                    {isSuperAdmin ? (
+                        <>
+                            <button className='btn-book' onClick={() => nav(`/update-book/${book.id}`)}>
+                                Alterar
+                            </button>
+
+                            <button className='btn-book' onClick={() => onDelete(book.id)}>
+                                Deletar
+                            </button>
+                        </>
+                    ) : null}
+
                 </div>
                 
             </div>
